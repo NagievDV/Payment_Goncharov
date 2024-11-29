@@ -1,0 +1,71 @@
+﻿<Window x:Class="Payment_Goncharov.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Payment_Goncharov"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Closing="Window_Closing"
+        Icon="/Resources/icon.png">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0">
+            
+            <ComboBox x:Name="cmbUser"
+                      HorizontalAlignment="Center"
+                      Margin="200,0,0,30"
+                      DisplayMemberPath="FIO"
+                      SelectionChanged="UpdateChart">
+                
+            </ComboBox>
+
+            <ComboBox x:Name="cmbDiagType"
+                      HorizontalAlignment="Center"
+                      Margin="10,0,0,30"
+                      SelectionChanged="UpdateChart">
+            </ComboBox>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0">
+
+
+            <Button x:Name="btnExcelExport"
+                    Content="Экспорт в Excel"
+                    HorizontalAlignment="Center"
+                    Margin="280,30,0,0" Click="btnExcelExport_Click"/>
+
+            <Button x:Name="btnWordExport"
+                    Content="Экспорт в Word"
+                    HorizontalAlignment="Center"
+                    Margin="50,30,0,0" Click="btnWordExport_Click"/>
+
+
+        </StackPanel>
+        <WindowsFormsHost x:Name="wfhMainHost"
+                          Grid.Row="1"
+                          Margin="5">
+
+            <charts:Chart x:Name="ChartPayments">
+                <charts:Chart.Legends>
+                    <charts:Legend>
+
+                    </charts:Legend>
+                </charts:Chart.Legends>
+            </charts:Chart>
+
+        </WindowsFormsHost>
+
+
+    </Grid>
+</Window>
