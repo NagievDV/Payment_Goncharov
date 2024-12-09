@@ -18,19 +18,22 @@
 
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0">
-            
+
             <ComboBox x:Name="cmbUser"
                       HorizontalAlignment="Center"
                       Margin="200,0,0,30"
                       DisplayMemberPath="FIO"
-                      SelectionChanged="UpdateChart">
-                
+                      SelectionChanged="UpdateChart"
+                      SelectedIndex="0"
+                      Style="{StaticResource cbStyleMain}">
             </ComboBox>
 
             <ComboBox x:Name="cmbDiagType"
                       HorizontalAlignment="Center"
                       Margin="10,0,0,30"
-                      SelectionChanged="UpdateChart">
+                      SelectionChanged="UpdateChart"
+                      SelectedIndex="10"
+                      Style="{StaticResource cbStyleMain}">
             </ComboBox>
 
 
@@ -43,12 +46,14 @@
             <Button x:Name="btnExcelExport"
                     Content="Экспорт в Excel"
                     HorizontalAlignment="Center"
-                    Margin="280,30,0,0" Click="btnExcelExport_Click"/>
+                    Margin="280,30,0,0"
+                    Click="btnExcelExport_Click"/>
 
             <Button x:Name="btnWordExport"
                     Content="Экспорт в Word"
                     HorizontalAlignment="Center"
-                    Margin="50,30,0,0" Click="btnWordExport_Click"/>
+                    Margin="50,30,0,0"
+                    Click="btnWordExport_Click"/>
 
 
         </StackPanel>

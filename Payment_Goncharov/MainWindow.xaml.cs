@@ -16,6 +16,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.Remoting.Contexts;
+using System.Data.Entity;
 
 
 namespace Payment_Goncharov
@@ -25,6 +26,7 @@ namespace Payment_Goncharov
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Entities _context = new Entities();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,8 +36,8 @@ namespace Payment_Goncharov
                 IsValueShownAsLabel = true
             };
             ChartPayments.Series.Add(currentSeries);
-            CmbUser.ItemsSource = _context.User.ToList();
-            CmbDiagram.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
+            cmbUser.ItemsSource = _context.User.ToList();
+            cmbDiagType.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
 
 
         }
@@ -74,32 +76,44 @@ namespace Payment_Goncharov
         private void btnExcelExport_Click(object sender, RoutedEventArgs e)
         {
             var allUsers = _context.User.ToList().OrderBy(u => u.FIO).ToList();
+
             var application = new Excel.Application();
             application.SheetsInNewWorkbook = allUsers.Count();
             Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
+
             for (int i = 0; i < allUsers.Count(); i++)
             {
+
                 int startRowIndex = 1;
                 Excel.Worksheet worksheet = application.Worksheets.Item[i + 1];
                 worksheet.Name = allUsers[i].FIO;
+
                 worksheet.Cells[1][startRowIndex] = "Дата платежа";
                 worksheet.Cells[2][startRowIndex] = "Название";
                 worksheet.Cells[3][startRowIndex] = "Стоимость";
                 worksheet.Cells[4][startRowIndex] = "Количество";
                 worksheet.Cells[5][startRowIndex] = "Сумма";
-                Excel.Range columlHeaderRange = worksheet.Range[worksheet.Cells[1][1], worksheet.Cells[5][1]];
+                Excel.Range columlHeaderRange = worksheet.Range[worksheet.Cells[1][1],
+                    worksheet.Cells[5][1]];
                 columlHeaderRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                 columlHeaderRange.Font.Bold = true;
                 startRowIndex++;
-                var userCategories = allUsers[i].Payment.OrderBy(u => u.Date).GroupBy(u => u.Category).OrderBy(u => u.Key.Name);
+
+                var userCategories = allUsers[i].Payment.OrderBy(u => u.Date).GroupBy(u => u.Category
+                    ).OrderBy(u => u.Key.Name);
+
+                decimal totalSum = 0;
+
                 foreach (var groupCategory in userCategories)
                 {
-                    Excel.Range headerRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[5][startRowIndex]];
+                    Excel.Range headerRange = worksheet.Range[worksheet.Cells[1][startRowIndex],
+                        worksheet.Cells[5][startRowIndex]];
                     headerRange.Merge();
                     headerRange.Value = groupCategory.Key.Name;
                     headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     headerRange.Font.Italic = true;
                     startRowIndex++;
+
                     foreach (var payment in groupCategory)
                     {
                         worksheet.Cells[1][startRowIndex] = payment.Date.ToString("dd.MM.yyyy");
@@ -111,38 +125,76 @@ namespace Payment_Goncharov
                         (worksheet.Cells[5][startRowIndex] as Excel.Range).NumberFormat = "0.00";
                         startRowIndex++;
                     }
-                    Excel.Range sumRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[4][startRowIndex]];
+
+                    totalSum += Convert.ToDecimal(worksheet.Cells[5][startRowIndex - 1].Value);
+
+                    Excel.Range sumRange = worksheet.Range[worksheet.Cells[1][startRowIndex],
+                        worksheet.Cells[4][startRowIndex]];
                     sumRange.Merge();
                     sumRange.Value = "ИТОГО:";
                     sumRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
-                    worksheet.Cells[5][startRowIndex].Formula = $"=SUM(E{startRowIndex - groupCategory.Count()}:" +$"E{startRowIndex - 1})";
+
+                    worksheet.Cells[5][startRowIndex].Formula =
+                        $"=SUM(E{startRowIndex - groupCategory.Count()}:" + $"E{startRowIndex - 1})";
                     sumRange.Font.Bold = worksheet.Cells[5][startRowIndex].Font.Bold = true;
                     startRowIndex++;
+
                     Excel.Range rangeBorders = worksheet.Range[worksheet.Cells[1][1],
                         worksheet.Cells[5][startRowIndex - 1]];
-                    rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = 
-                        rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = 
-                        rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = 
-                        rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = 
+                    rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
+                        rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
+                        rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle =
+                        rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
                         rangeBorders.Borders[Excel.XlBordersIndex.xlInsideHorizontal].LineStyle =
-                        rangeBorders.Borders[Excel.XlBordersIndex.xlInsideVertical].LineStyle = 
+                        rangeBorders.Borders[Excel.XlBordersIndex.xlInsideVertical].LineStyle =
                         Excel.XlLineStyle.xlContinuous;
-                    worksheet.Columns.AutoFit();
 
+                    worksheet.Columns.AutoFit();
                 }
+
+                Excel.Range totalRow = worksheet.Range[worksheet.Cells[1][startRowIndex],
+                worksheet.Cells[5][startRowIndex]];
+                totalRow.Merge();
+                totalRow.Value = $"Общий итог: {totalSum}";
+                totalRow.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                totalRow.Font.Bold = true;
+
+
+
+               // worksheet.Cells[6][startRowIndex].Value = totalSum;
+                worksheet.Cells[6][startRowIndex].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                (worksheet.Cells[5][startRowIndex] as Excel.Range).NumberFormat = "0.00";
+
+
+                totalRow.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+
+                totalRow.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White); 
+
+
+                startRowIndex++;
+
                 application.Visible = true;
             }
         }
-
-
-            }
-
-            private void btnWordExport_Click(object sender, RoutedEventArgs e)
+        private void btnWordExport_Click(object sender, RoutedEventArgs e)
         {
             var allUsers = _context.User.ToList();
             var allCategories = _context.Category.ToList();
             var application = new Word.Application();
             Word.Document document = application.Documents.Add();
+
+            // Добавление верхнего колонтитула с текущей датой
+            Word.HeaderFooter header = document.Sections[1].Headers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary];
+            header.Range.Text = $"{DateTime.Now.ToString("dd.MM.yyyy")}";
+            header.Range.Font.Name = "Times New Roman";
+            header.Range.Font.Size = 12;
+            header.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            // Добавление нижнего колонтитула с номером страницы
+            Word.HeaderFooter footer = document.Sections[1].Footers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary];
+            footer.PageNumbers.Add(Word.WdParagraphAlignment.wdAlignParagraphCenter, true);
+            footer.Range.Font.Name = "Times New Roman";
+            footer.Range.Font.Size = 10;
 
             foreach (var user in allUsers)
             {
@@ -181,7 +233,7 @@ namespace Payment_Goncharov
                     Where(u => u.Category == currentCategory).Sum(u => u.Num * u.Price).ToString("N2") + " руб.";
                     cellRange.Font.Name = "Times New Roman";
                     cellRange.Font.Size = 12;
-                } 
+                }
                 document.Paragraphs.Add();
                 Payment maxPayment = user.Payment.OrderByDescending(u => u.Price * u.Num).FirstOrDefault();
                 if (maxPayment != null)
@@ -204,14 +256,13 @@ namespace Payment_Goncharov
                     minPaymentRange.Font.Color = Word.WdColor.wdColorDarkGreen;
                     minPaymentRange.InsertParagraphAfter();
                 }
-                if (user != allUsers.LastOrDefault()) 
+                if (user != allUsers.LastOrDefault())
                     document.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
                 application.Visible = true;
                 document.SaveAs2(@"D:\Payments.docx");
                 document.SaveAs2(@"D:\Payments.pdf",
-                    Word.WdExportFormat.wdExportFormatPDF);
+                Word.WdExportFormat.wdExportFormatPDF);
             }
-
         }
     }
 }

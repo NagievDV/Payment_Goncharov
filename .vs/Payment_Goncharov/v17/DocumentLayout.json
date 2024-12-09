@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\",
+  "WorkspaceRootPath": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|c:\\users\\217042\\desktop\\payment_goncharov\\payment_goncharov\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|c:\\users\\gdmit\\desktop\\payment_goncharov\\payment_goncharov\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|solutionrelative:payment_goncharov\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|c:\\users\\217042\\desktop\\payment_goncharov\\payment_goncharov\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\payment_goncharov\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|solutionrelative:payment_goncharov\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|c:\\users\\217042\\desktop\\payment_goncharov\\payment_goncharov\\resourcedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\payment_goncharov\\resourcedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{90D536DD-28DB-4631-B4C0-59D8CCF73EA8}|Payment_Goncharov\\Payment_Goncharov.csproj|solutionrelative:payment_goncharov\\resourcedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Payment_Goncharov\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml.cs",
               "RelativeToolTip": "Payment_Goncharov\\MainWindow.xaml.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAqwFAAAAANAAAA",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAowKAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-29T06:13:51.756Z",
               "IsPinned": true,
@@ -42,9 +42,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Payment_Goncharov\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\MainWindow.xaml",
               "RelativeToolTip": "Payment_Goncharov\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-29T08:04:35.165Z",
@@ -55,9 +55,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ResourceDictionary.xaml",
-              "DocumentMoniker": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\ResourceDictionary.xaml",
+              "DocumentMoniker": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\ResourceDictionary.xaml",
               "RelativeDocumentMoniker": "Payment_Goncharov\\ResourceDictionary.xaml",
-              "ToolTip": "C:\\Users\\217042\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\ResourceDictionary.xaml",
+              "ToolTip": "C:\\Users\\gdmit\\Desktop\\Payment_Goncharov\\Payment_Goncharov\\ResourceDictionary.xaml",
               "RelativeToolTip": "Payment_Goncharov\\ResourceDictionary.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-29T06:22:51.001Z",

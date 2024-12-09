@@ -10,14 +10,13 @@
         <Setter Property="Height" Value="25"/>
         <Setter Property="Width" Value="100"/>
         <Setter Property="Background" Value="#99FFFF"/>
-        <Setter Property="Foreground" Value="#0000CC"/>
         <Setter Property="FontFamily" Value="Comic Sans MS"/>
         <Setter Property="BorderBrush" Value="#0000CC"/>
+        <Setter Property="Foreground" Value="#0000CC"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="10"/>
     </Style>
 
-    <Style TargetType="ComboBox">
+    <Style x:Key="cbStyleMain" TargetType="ComboBox">
         <Setter Property="Height" Value="25"/>
         <Setter Property="Width" Value="200"/>
         <Setter Property="Background" Value="#99FFFF"/>
@@ -25,7 +24,11 @@
         <Setter Property="FontFamily" Value="Comic Sans MS"/>
         <Setter Property="BorderBrush" Value="#0000CC"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="10"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Background" Value="#99FFFF"/>
+        <Setter Property="Foreground" Value="#0000CC"/>
     </Style>
 
 
